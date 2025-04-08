@@ -16,6 +16,7 @@ def main_print_weather():
 
     response_2 = requests.get(url_svo)
     response_2.raise_for_status()
+    
     response_3 = requests.get(url_cherepovec)
     response_3.raise_for_status()
 
