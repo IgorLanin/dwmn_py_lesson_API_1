@@ -1,29 +1,27 @@
 import requests
 
 
-def main_print_weather():
-    url_template = 'https://wttr.in/{}?nTqmM&lang=ru'
-    location_1 = 'Лондон'
-    location_2 = 'Шереметьево'
-    location_3 = 'Череповец'
+def print_weather():
+    url_template = 'https://wttr.in/{}'
 
-    url_london = url_template.format(location_1)
-    url_svo = url_template.format(location_2)
-    url_cherepovec = url_template.format(location_3)
+    payload = {
+        'n': '',
+        'T': '',
+        'q': '',
+        'm': '',
+        'M': '',
+        '&': '',
+        'lang': 'ru'
+    }
 
-    response_1 = requests.get(url_london)
-    response_1.raise_for_status()
+    locations = ['Лондон', 'Шереметьево', 'Череповец']
 
-    response_2 = requests.get(url_svo)
-    response_2.raise_for_status()
-    
-    response_3 = requests.get(url_cherepovec)
-    response_3.raise_for_status()
-
-    print(response_1.text)
-    print(response_2.text)
-    print(response_3.text)
+    for location in locations:
+        url = url_template.format(location)
+        response = requests.get(url, params=payload)
+        response.raise_for_status()
+        print(response.text)
 
 
 if __name__ == '__main__':
-    main_print_weather()
+    print_weather()
